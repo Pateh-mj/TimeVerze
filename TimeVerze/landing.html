@@ -1,39 +1,156 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>TimeVerze — Your Complete Ecosystem of Time</title>
     
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
-    
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@800&display=swap" rel="stylesheet">
 
-<header class="main-header">
-    <div class="header-container">
-        <div class="logo-area">
-            <a href="https://timeverze.co.zm" class="brand">
-                <img src="https://timeverze.co.zm/images/timeverze-logo.png" alt="TimeVerze Logo" class="logo-img" onerror="this.style.display='none';">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        navy: { 900: '#020817', 800: '#0B1120' },
+                        gold: { DEFAULT: '#E2B859', 600: '#C5A059' },
+                        offwhite: '#F8F9FA',
+                    },
+                    fontFamily: {
+                        sans: ['Manrope', 'sans-serif'],
+                        brand: ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        .brand-letter-spacing { letter-spacing: 0.15em; }
+        .feature-card { transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1); }
+    </style>
+</head>
+<body class="font-sans bg-offwhite text-navy-900 antialiased" x-data="{ mobileMenuOpen: false }">
+
+    <header class="sticky top-0 z-50 bg-navy-900 border-b border-gold/15 py-4 md:py-5">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8 flex justify-between items-center">
+            <a href="#" class="flex items-center gap-4 group">
+                <img src="TimeVerze.png" alt="TimeVerze" class="h-12 md:h-16 w-auto object-contain transition-transform duration-300 group-hover:scale-105" onerror="this.style.display='none';">
             </a>
+            
+            <nav class="hidden md:flex items-center gap-10">
+                <a href="#features" class="text-[13px] uppercase tracking-wider font-bold text-slate-400 hover:text-gold transition-colors">Features</a>
+                <a href="#how-it-works" class="text-[13px] uppercase tracking-wider font-bold text-slate-400 hover:text-gold transition-colors">How it Works</a>
+                <a href="#faq" class="text-[13px] uppercase tracking-wider font-bold text-slate-400 hover:text-gold transition-colors">FAQ</a>
+                <a href="https://timeverze.co.zm/login" class="bg-gold text-navy-900 px-7 py-2.5 rounded-sm font-extrabold text-[11px] uppercase tracking-[0.1em] hover:bg-white transition-all shadow-lg shadow-gold/10 border border-gold-600">
+                    Sign In
+                </a>
+            </nav>
+
+            <button @click="mobileMenuOpen = !mobileMenuOpen" class="md:hidden text-gold focus:outline-none">
+                <svg x-show="!mobileMenuOpen" class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                <svg x-show="mobileMenuOpen" x-cloak class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
         </div>
 
-        <nav class="navigation">
-            <ul class="nav-list">
-                <li><a href="#features" class="nav-item">Features</a></li>
-                <li><a href="#how-it-works" class="nav-item">How it Works</a></li>
-                <li><a href="#faq" class="nav-item">FAQ</a></li>
-            </ul>
-        </nav>
+        <div x-show="mobileMenuOpen" 
+             x-transition:enter="transition ease-out duration-200"
+             x-transition:enter-start="opacity-0 -translate-y-4"
+             x-transition:enter-end="opacity-100 translate-y-0"
+             class="md:hidden bg-navy-800 border-b border-gold/10 px-6 py-8 space-y-6">
+            <a @click="mobileMenuOpen = false" href="#features" class="block text-lg font-bold text-white hover:text-gold">Features</a>
+            <a @click="mobileMenuOpen = false" href="#how-it-works" class="block text-lg font-bold text-white hover:text-gold">How it Works</a>
+            <a @click="mobileMenuOpen = false" href="#faq" class="block text-lg font-bold text-white hover:text-gold">FAQ</a>
+            <a href="https://timeverze.co.zm/login" class="inline-block bg-gold text-navy-900 px-8 py-3 rounded-sm font-extrabold text-xs uppercase tracking-wider w-full text-center">Sign In</a>
+        </div>
+    </header>
 
-        <div class="action-area">
-            <a href="https://timeverze.co.zm/login" class="btn-gold">Sign In</a>
+    <section class="relative pt-12 md:pt-24 pb-20 md:pb-32 overflow-hidden bg-white">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8 grid lg:grid-cols-2 gap-12 md:gap-20 items-center relative">
+            <div class="text-center lg:text-left">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gold/10 border border-gold/20 mb-6">
+                    <span class="w-2 h-2 rounded-full bg-gold animate-pulse"></span>
+                    <span class="text-[10px] md:text-[11px] font-bold uppercase tracking-widest text-gold-600">Legal Management 2.0</span>
+                </div>
+                <h1 class="text-4xl md:text-5xl lg:text-7xl font-extrabold text-navy-900 leading-[1.1] mb-6 md:mb-8 tracking-tight">
+                    Your Complete <span class="text-gold">Ecosystem</span> of Time.
+                </h1>
+
+                <p class="text-base md:text-xl text-slate-500 leading-relaxed mb-8 md:mb-10 max-w-lg mx-auto lg:mx-0 font-medium">
+                    All‑in‑one legal time, billing, and matter management. Capture every billable minute and scale with confidence.
+                </p>
+                <div class="flex flex-col sm:flex-row justify-center lg:justify-start gap-4">
+                    <button class="bg-gold text-navy-900 px-8 py-4 rounded-md font-bold text-sm uppercase tracking-wider hover:bg-navy-900 hover:text-white transition-all shadow-lg shadow-gold/20">
+                        Request a Demo
+                    </button>
+                    <button class="border-2 border-navy-900 text-navy-900 px-8 py-4 rounded-md font-bold text-sm uppercase tracking-wider hover:bg-navy-900 hover:text-white transition-all">
+                        How it Works
+                    </button>
+                </div>
+            </div>
+            
+            <div class="relative group mt-8 lg:mt-0 px-4 md:px-0">
+    <div class="absolute -inset-1 bg-gradient-to-r from-gold/30 to-navy-900/10 rounded-2xl blur opacity-20 group-hover:opacity-50 transition duration-1000 group-hover:duration-200"></div>
+    
+    <div class="relative bg-white aspect-video rounded-xl shadow-2xl border border-slate-200 overflow-hidden flex flex-col transition-transform duration-500 group-hover:scale-[1.01]">
+        
+        <div class="h-7 bg-slate-50 border-b border-slate-200 flex items-center px-4 gap-1.5 flex-shrink-0">
+            <div class="w-2 h-2 rounded-full bg-slate-300"></div>
+            <div class="w-2 h-2 rounded-full bg-slate-300"></div>
+            <div class="w-2 h-2 rounded-full bg-slate-300"></div>
+        </div>
+
+        <div class="flex-1 overflow-hidden">
+             <img src="https://tse1.mm.bing.net/th/id/OIP.V_imbhWVJFLgNFDsveXUXAHaEw?pid=ImgDet&w=474&h=304&rs=1&o=7&rm=3" 
+                  alt="TimeVerze Dashboard" 
+                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
         </div>
     </div>
-</header>
+</div>
+        </div>
+    </section>
+
+    <section id="features" class="py-16 md:py-24 bg-offwhite">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="flex flex-col items-center text-center mb-12 md:mb-20">
+                <h2 class="text-3xl md:text-4xl font-extrabold text-navy-900 mb-6 tracking-tight">Everything you need to scale</h2>
+                <div class="h-1.5 w-12 bg-gold"></div>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-10">
+                <div class="feature-card group bg-white p-8 md:p-12 rounded-sm border border-slate-200 hover:border-gold hover:shadow-xl relative overflow-hidden">
+                    <div class="absolute top-0 left-0 w-1 h-0 bg-gold transition-all duration-500 group-hover:h-full"></div>
+                    <div class="text-gold mb-6 group-hover:scale-110 transition-transform duration-500">
+                        <svg class="w-10 h-10 md:w-12 md:h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    </div>
+                    <h3 class="text-xl md:text-2xl font-bold text-navy-900 mb-4 tracking-tight">Dashboard</h3>
+                    <p class="text-slate-500 text-sm md:text-base leading-relaxed font-medium">Real‑time view of tasks, time, WIP, and deadlines.</p>
+                </div>
+
+                <div class="feature-card group bg-white p-8 md:p-12 rounded-sm border border-slate-200 hover:border-gold hover:shadow-xl relative overflow-hidden">
+                    <div class="absolute top-0 left-0 w-1 h-0 bg-gold transition-all duration-500 group-hover:h-full"></div>
+                    <div class="text-gold mb-6 group-hover:scale-110 transition-transform duration-500">
+                        <svg class="w-10 h-10 md:w-12 md:h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                    </div>
+                    <h3 class="text-xl md:text-2xl font-bold text-navy-900 mb-4 tracking-tight">Clients & Matters</h3>
+                    <p class="text-slate-500 text-sm md:text-base leading-relaxed font-medium">Centralize client details, contacts, and case data.</p>
+                </div>
+
+                <div class="feature-card group bg-white p-8 md:p-12 rounded-sm border border-slate-200 hover:border-gold hover:shadow-xl relative overflow-hidden md:col-span-2 lg:col-span-1">
+                    <div class="absolute top-0 left-0 w-1 h-0 bg-gold transition-all duration-500 group-hover:h-full"></div>
+                    <div class="text-gold mb-6 group-hover:scale-110 transition-transform duration-500">
+                        <svg class="w-10 h-10 md:w-12 md:h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+                    </div>
+                    <h3 class="text-xl md:text-2xl font-bold text-navy-900 mb-4 tracking-tight">Time Entries</h3>
+                    <p class="text-slate-500 text-sm md:text-base leading-relaxed font-medium">Timers and quick‑add capture every billable minute.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
 </body>
 </html>
