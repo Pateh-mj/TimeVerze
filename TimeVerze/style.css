@@ -1,0 +1,145 @@
+/* --- Design Tokens --- */
+:root {
+    --navy-primary: #020817;   /* Deep, solid "Obsidian" Navy */
+    --gold-accent: #e0a825;    /* Refined Satin Gold */
+    --gold-muted: #bd8815;     /* Deeper Gold for borders */
+    --white: #FFFFFF;
+    --grey-100: #F8FAFC;
+    --grey-400: #94A3B8;
+    
+    /* Typography */
+    --font-nav: 'Manrope', sans-serif;
+    --font-brand: 'Inter', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+}
+
+body {
+    background: var(--grey-100);
+}
+
+/* --- Header Construction --- */
+.main-header {
+    background-color: var(--navy-primary);
+    height: 80px; /* Fixed height creates a solid feel */
+    display: flex;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    border-bottom: 1px solid rgba(226, 184, 89, 0.15);
+}
+
+.header-container {
+    width: 100%;
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 0 40px;
+    display: grid;
+    grid-template-columns: 200px 1fr auto; /* Precise layout control */
+    align-items: center;
+}
+
+/* --- Brand / Logo --- */
+.brand {
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.brand-name {
+    font-family: var(--font-brand);
+    color: var(--white);
+    font-weight: 800;
+    font-size: 1.1rem;
+    letter-spacing: 0.15em; /* Spaced out caps for a luxury feel */
+    text-transform: uppercase;
+}
+
+.logo-img {
+    height: 120px;
+}
+
+/* --- Navigation --- */
+.nav-list {
+    list-style: none;
+    display: flex;
+    justify-content: right;
+    gap: 40px;
+}
+
+.nav-item {
+    font-family: var(--font-nav);
+    color: var(--grey-400);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    position: relative;
+    padding: 8px 0;
+}
+
+.nav-item:hover {
+    color: var(--white);
+}
+
+/* The "Solid" Hover Indicator */
+.nav-item::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--gold-accent);
+    transition: width 0.3s ease;
+}
+
+.nav-item:hover::after {
+    width: 100%;
+}
+
+/* --- Actions / Buttons --- */
+.action-area {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+.nav-link-lite {
+    color: var(--white);
+    text-decoration: none;
+    font-family: var(--font-nav);
+    font-weight: 600;
+    font-size: 0.9rem;
+    opacity: 0.8;
+}
+
+.btn-gold {
+    background: var(--gold-accent);
+    color: var(--navy-primary);
+    padding: 12px 24px;
+    margin-left: 40px;
+    border-radius: 4px; /* Sharp corners feel more legal/professional than round */
+    text-decoration: none;
+    font-family: var(--font-nav);
+    font-weight: 700;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    transition: transform 0.2s, background 0.2s;
+    border: 1px solid var(--gold-muted);
+}
+
+.btn-gold:hover {
+    background: var(--gold-muted);
+    transform: translateY(-2px);
+    border-color: var(--white);
+    color: var(--white);
+}
